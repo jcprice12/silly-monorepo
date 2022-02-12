@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@silly-monorepo/shared/silly-family": [
+        "libs/shared/silly-family/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

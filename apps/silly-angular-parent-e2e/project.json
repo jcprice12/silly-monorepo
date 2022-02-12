@@ -1,0 +1,28 @@
+{
+  "root": "apps/silly-angular-parent-e2e",
+  "sourceRoot": "apps/silly-angular-parent-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/silly-angular-parent-e2e/cypress.json",
+        "devServerTarget": "silly-angular-parent:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "silly-angular-parent:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/silly-angular-parent-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["silly-angular-parent"]
+}

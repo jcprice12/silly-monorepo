@@ -1,4 +1,10 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "shared-silly-family": "libs/shared/silly-family",
+    "silly-angular-mfe": "apps/silly-angular-mfe",
+    "silly-angular-mfe-e2e": "apps/silly-angular-mfe-e2e",
+    "silly-angular-parent": "apps/silly-angular-parent",
+    "silly-angular-parent-e2e": "apps/silly-angular-parent-e2e"
+  }
 }

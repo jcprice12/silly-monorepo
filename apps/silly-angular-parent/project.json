@@ -1,0 +1,112 @@
+{
+  "projectType": "application",
+  "root": "apps/silly-angular-parent",
+  "sourceRoot": "apps/silly-angular-parent/src",
+  "prefix": "silly-monorepo",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/silly-angular-parent",
+        "index": "apps/silly-angular-parent/src/index.html",
+        "main": "apps/silly-angular-parent/src/main.ts",
+        "polyfills": "apps/silly-angular-parent/src/polyfills.ts",
+        "tsConfig": "apps/silly-angular-parent/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/silly-angular-parent/src/favicon.ico",
+          "apps/silly-angular-parent/src/assets"
+        ],
+        "styles": ["apps/silly-angular-parent/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/silly-angular-parent/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/silly-angular-parent/src/environments/environment.ts",
+              "with": "apps/silly-angular-parent/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/silly-angular-parent/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "silly-angular-parent:build:production"
+        },
+        "development": {
+          "browserTarget": "silly-angular-parent:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "silly-angular-parent:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/silly-angular-parent/src/**/*.ts",
+          "apps/silly-angular-parent/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/silly-angular-parent"],
+      "options": {
+        "jestConfig": "apps/silly-angular-parent/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "serve-mfe": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx serve silly-angular-mfe",
+          "nx serve silly-angular-parent"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
