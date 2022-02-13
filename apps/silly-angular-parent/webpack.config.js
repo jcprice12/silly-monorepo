@@ -22,7 +22,7 @@ sharedMappings.register(
   tsConfigPath,
   [
     /* mapped paths to share */
-    '@silly-monorepo/shared/silly-family'
+    '@silly-monorepo/shared/data-access-silly-family'
   ],
   workspaceRootPath
 );

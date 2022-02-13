@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'shared-silly-family',
+  displayName: 'shared-data-access-silly-family',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/shared/silly-family',
+  coverageDirectory: '../../../coverage/libs/shared/data-access-silly-family',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

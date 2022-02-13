@@ -72,7 +72,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:4200",
+        "proxyConfig": "apps/silly-angular-parent/proxy.conf.json"
       }
     },
     "extract-i18n": {
@@ -102,6 +103,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "nx serve silly-nest-api",
           "nx serve silly-angular-mfe",
           "nx serve silly-angular-parent"
         ]

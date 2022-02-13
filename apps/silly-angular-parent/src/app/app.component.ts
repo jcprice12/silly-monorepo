@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SillyFamilyService} from '@silly-monorepo/shared/silly-family'
+import {SharedDataAccessSillyFamilyService} from '@silly-monorepo/shared/data-access-silly-family'
+import { SharedUtilSillyFamilyModel } from '@silly-monorepo/shared/util-silly-family'
 
 @Component({
   selector: 'silly-monorepo-root',
@@ -11,12 +12,22 @@ export class AppComponent implements OnInit{
   public familyName = ''
   public familySize = 0
 
-  constructor(private readonly sillyFamilyService: SillyFamilyService){}
+  constructor(private readonly sillyFamilyService: SharedDataAccessSillyFamilyService){}
 
-  public ngOnInit(): void {
-    this.familyName = this.sillyFamilyService.getFamilyName()
+  public async ngOnInit(): Promise<void> {
+    this.startListeningForAddedFamilyMembers()
+    await this.loadInitialData()
+  }
+
+  private async loadInitialData(): Promise<void> {
+    const family: SharedUtilSillyFamilyModel = await this.sillyFamilyService.retrieveFamilyFromApi()
+    this.familyName = family.familyName
+    this.familySize = family.members.length
+  }
+
+  private startListeningForAddedFamilyMembers(): void {
     this.sillyFamilyService.familyMemberAdded.subscribe(() => {
-      this.familySize = this.sillyFamilyService.getFamilySize()
+      this.familySize++
     })
   }
 }

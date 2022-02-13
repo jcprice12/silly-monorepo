@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SillyFamilyService} from '@silly-monorepo/shared/silly-family'
+import {SharedDataAccessSillyFamilyService} from '@silly-monorepo/shared/data-access-silly-family'
 
 @Component({
   selector: 'silly-monorepo-silly-angular-mfe-entry',
@@ -15,15 +15,18 @@ import {SillyFamilyService} from '@silly-monorepo/shared/silly-family'
 export class RemoteEntryComponent implements OnInit{
   public sillyFamilyMembers: Array<string> = []
 
-  constructor(private readonly sillyFamilyService: SillyFamilyService){}
+  constructor(private readonly sillyFamilyService: SharedDataAccessSillyFamilyService){}
 
-  public ngOnInit(): void {
-    this.sillyFamilyMembers = this.sillyFamilyService.getFamilyMembers()
+  public async ngOnInit(): Promise<void> {
+    await this.loadInitialData()
   }
 
-  public addMember(): void {
-    const familySize = this.sillyFamilyService.getFamilySize()
-    this.sillyFamilyService.addFamilyMember(`member ${familySize + 1}`)
-    this.sillyFamilyMembers = this.sillyFamilyService.getFamilyMembers()
+  public async addMember(): Promise<void> {
+    this.sillyFamilyMembers = (await this.sillyFamilyService.addFamilyMember('new member')).members
+  }
+
+  private async loadInitialData(): Promise<void> {
+    const family = await this.sillyFamilyService.retrieveFamilyFromApi()
+    this.sillyFamilyMembers = family.members
   }
 }

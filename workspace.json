@@ -1,10 +1,12 @@
 {
   "version": 2,
   "projects": {
-    "shared-silly-family": "libs/shared/silly-family",
+    "shared-data-access-silly-family": "libs/shared/data-access-silly-family",
+    "shared-util-silly-family": "libs/shared/util-silly-family",
     "silly-angular-mfe": "apps/silly-angular-mfe",
     "silly-angular-mfe-e2e": "apps/silly-angular-mfe-e2e",
     "silly-angular-parent": "apps/silly-angular-parent",
-    "silly-angular-parent-e2e": "apps/silly-angular-parent-e2e"
+    "silly-angular-parent-e2e": "apps/silly-angular-parent-e2e",
+    "silly-nest-api": "apps/silly-nest-api"
   }
 }

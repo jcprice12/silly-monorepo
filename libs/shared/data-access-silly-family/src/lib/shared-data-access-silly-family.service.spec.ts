@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SillyFamilyService } from './silly-family.service';
+import { SharedDataAccessSillyFamilyService } from './shared-data-access-silly-family.service';
 
 describe('SillyFamilyService', () => {
-  let service: SillyFamilyService;
+  let service: SharedDataAccessSillyFamilyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SillyFamilyService);
+    service = TestBed.inject(SharedDataAccessSillyFamilyService);
   });
 
   it('should be created', () => {

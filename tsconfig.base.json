@@ -15,8 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@silly-monorepo/shared/silly-family": [
-        "libs/shared/silly-family/src/index.ts"
+      "@silly-monorepo/shared/data-access-silly-family": [
+        "libs/shared/data-access-silly-family/src/index.ts"
+      ],
+      "@silly-monorepo/shared/util-silly-family": [
+        "libs/shared/util-silly-family/src/index.ts"
       ]
     }
   },
