@@ -99,6 +99,15 @@
         "jestConfig": "apps/silly-angular-mfe/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "serve-full": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx serve silly-nest-api",
+          "nx serve silly-angular-mfe"
+        ]
+      }
     }
   },
   "tags": []

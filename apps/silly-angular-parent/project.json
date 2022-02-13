@@ -99,7 +99,7 @@
         "passWithNoTests": true
       }
     },
-    "serve-mfe": {
+    "serve-full": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
