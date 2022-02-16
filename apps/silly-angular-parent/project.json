@@ -104,7 +104,7 @@
       "options": {
         "commands": [
           "nx serve silly-nest-api",
-          "nx serve silly-angular-mfe",
+          "nx serve-front silly-angular-mfe",
           "nx serve silly-angular-parent"
         ]
       }

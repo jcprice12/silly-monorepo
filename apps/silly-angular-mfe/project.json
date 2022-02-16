@@ -4,7 +4,7 @@
   "sourceRoot": "apps/silly-angular-mfe/src",
   "prefix": "silly-monorepo",
   "targets": {
-    "build": {
+    "build-front": {
       "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -12,7 +12,7 @@
         "index": "apps/silly-angular-mfe/src/index.html",
         "main": "apps/silly-angular-mfe/src/main.ts",
         "polyfills": "apps/silly-angular-mfe/src/polyfills.ts",
-        "tsConfig": "apps/silly-angular-mfe/tsconfig.app.json",
+        "tsConfig": "apps/silly-angular-mfe/src/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/silly-angular-mfe/src/favicon.ico",
@@ -60,21 +60,21 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-front": {
       "executor": "@nrwl/angular:webpack-server",
       "configurations": {
         "production": {
-          "browserTarget": "silly-angular-mfe:build:production"
+          "browserTarget": "silly-angular-mfe:build-front:production"
         },
         "development": {
-          "browserTarget": "silly-angular-mfe:build:development"
+          "browserTarget": "silly-angular-mfe:build-front:development"
         }
       },
       "defaultConfiguration": "development",
       "options": {
         "port": 4201,
         "publicHost": "http://localhost:4201",
-        "proxyConfig": "apps/silly-angular-mfe/proxy.conf.json"
+        "proxyConfig": "apps/silly-angular-mfe/src/proxy.conf.json"
       }
     },
     "extract-i18n": {
@@ -83,21 +83,106 @@
         "browserTarget": "silly-angular-mfe:build"
       }
     },
-    "lint": {
+    "lint-front": {
       "executor": "@nrwl/linter:eslint",
       "options": {
+        "eslintConfig": "apps/silly-angular-mfe/src/.eslintrc.json",
         "lintFilePatterns": [
           "apps/silly-angular-mfe/src/**/*.ts",
           "apps/silly-angular-mfe/src/**/*.html"
         ]
       }
     },
-    "test": {
+    "test-front": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/silly-angular-mfe"],
       "options": {
-        "jestConfig": "apps/silly-angular-mfe/jest.config.js",
+        "jestConfig": "apps/silly-angular-mfe/src/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "build-back": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/silly-angular-mfe-server",
+        "main": "apps/silly-angular-mfe/server/main.ts",
+        "tsConfig": "apps/silly-angular-mfe/server/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/silly-angular-mfe/server/environments/environment.ts",
+              "with": "apps/silly-angular-mfe/server/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve-back": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "silly-angular-mfe:build-back"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "silly-angular-mfe:build-back:development"
+        }
+      }
+    },
+    "lint-back": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "eslintConfig": "apps/silly-angular-mfe/server/.eslintrc.json",
+        "lintFilePatterns": ["apps/silly-angular-mfe/server/**/*.ts"]
+      }
+    },
+    "test-back": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/silly-nest-api"],
+      "options": {
+        "jestConfig": "apps/silly-angular-mfe/server/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build-front silly-angular-mfe",
+          "nx build-back silly-angular-mfe --configuration=development"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build-front silly-angular-mfe",
+          "nx serve-back silly-angular-mfe"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx lint-front silly-angular-mfe",
+          "nx lint-back silly-angular-mfe"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx test-front silly-angular-mfe",
+          "nx test-back silly-angular-mfe"
+        ]
       }
     },
     "serve-full": {
@@ -105,7 +190,7 @@
       "options": {
         "commands": [
           "nx serve silly-nest-api",
-          "nx serve silly-angular-mfe"
+          "nx serve-front silly-angular-mfe"
         ]
       }
     }

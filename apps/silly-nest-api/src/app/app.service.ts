@@ -5,7 +5,7 @@ import { SharedUtilSillyFamilyModel } from '@silly-monorepo/shared/util-silly-fa
 export class AppService {
   private sillyFamily: SharedUtilSillyFamilyModel = {
     familyName: 'silly family',
-    members: ['member 1']
+    members: ['member']
   }
 
   getFamily(): SharedUtilSillyFamilyModel {

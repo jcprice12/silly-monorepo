@@ -1,6 +1,10 @@
 {
-  "/api": {
+  "/silly-nest-api": {
     "target": "http://localhost:3333",
+    "secure": false
+  },
+  "/silly-angular-mfe-api": {
+    "target": "http://localhost:3334",
     "secure": false
   }
 }

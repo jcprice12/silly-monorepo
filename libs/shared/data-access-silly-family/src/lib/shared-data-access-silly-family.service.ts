@@ -21,12 +21,12 @@ export class SharedDataAccessSillyFamilyService {
   }
 
   public retrieveFamilyFromApi(): Promise<SharedUtilSillyFamilyModel>{
-    const family$ = this.httpClient.get<SharedUtilSillyFamilyModel>('/api/family')
+    const family$ = this.httpClient.get<SharedUtilSillyFamilyModel>('/silly-nest-api/family')
     return lastValueFrom(family$)
   }
 
   private updateFamilyViaApi(family: SharedUtilSillyFamilyModel): Promise<SharedUtilSillyFamilyModel> {
-    const updatedFamiily$ = this.httpClient.put<SharedUtilSillyFamilyModel>('/api/family', family)
+    const updatedFamiily$ = this.httpClient.put<SharedUtilSillyFamilyModel>('/silly-nest-api/family', family)
     return lastValueFrom(updatedFamiily$)
   }
 }

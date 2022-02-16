@@ -22,7 +22,7 @@ export class RemoteEntryComponent implements OnInit{
   }
 
   public async addMember(): Promise<void> {
-    this.sillyFamilyMembers = (await this.sillyFamilyService.addFamilyMember('new member')).members
+    this.sillyFamilyMembers = (await this.sillyFamilyService.addFamilyMember('member')).members
   }
 
   private async loadInitialData(): Promise<void> {
