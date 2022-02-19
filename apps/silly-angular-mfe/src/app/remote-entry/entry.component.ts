@@ -3,14 +3,7 @@ import {SharedDataAccessSillyFamilyService} from '@silly-monorepo/shared/data-ac
 
 @Component({
   selector: 'silly-monorepo-silly-angular-mfe-entry',
-  template: `<div>
-    <button type=button (click)=addMember()>Add Member</button>
-    <ul>
-      <li *ngFor="let familyMember of sillyFamilyMembers">
-        {{familyMember}}
-      </li>
-    </ul>
-  </div>`
+  templateUrl: './entry.component.html' 
 })
 export class RemoteEntryComponent implements OnInit{
   public sillyFamilyMembers: Array<string> = []
@@ -26,7 +19,6 @@ export class RemoteEntryComponent implements OnInit{
   }
 
   private async loadInitialData(): Promise<void> {
-    const family = await this.sillyFamilyService.retrieveFamilyFromApi()
-    this.sillyFamilyMembers = family.members
+    this.sillyFamilyMembers = (await this.sillyFamilyService.retrieveFamilyFromApi()).members
   }
 }

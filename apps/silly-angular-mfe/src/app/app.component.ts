@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'silly-monorepo-root',
+  selector: 'silly-monorepo-angular-mfe-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'silly-angular-mfe';
-}
+export class AppComponent {}

@@ -3,12 +3,11 @@ import {SharedDataAccessSillyFamilyService} from '@silly-monorepo/shared/data-ac
 import { SharedUtilSillyFamilyModel } from '@silly-monorepo/shared/util-silly-family'
 
 @Component({
-  selector: 'silly-monorepo-root',
+  selector: 'silly-monorepo-angular-parent-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  public title = 'silly-angular-parent';
   public familyName = ''
   public familySize = 0
 

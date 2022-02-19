@@ -1,12 +1,21 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { SharedDataAccessSillyFamilyService } from '@silly-monorepo/shared/data-access-silly-family';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let addFamilyMemberMock: jest.Mock
+  let retrieveFamilyFromApiMock: jest.Mock
   beforeEach(async () => {
+    retrieveFamilyFromApiMock = jest.fn()
+    addFamilyMemberMock = jest.fn()
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      providers: [{
+        provide: SharedDataAccessSillyFamilyService,
+        useValue: {
+          addFamilyMember: addFamilyMemberMock,
+          retrieveFamilyFromApi: retrieveFamilyFromApiMock
+        }
+      }]
     }).compileComponents();
   });
 
@@ -14,11 +23,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'silly-angular-parent'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('silly-angular-parent');
   });
 });
