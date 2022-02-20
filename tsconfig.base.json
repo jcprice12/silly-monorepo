@@ -15,6 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@silly-modules/silly-log-decorator": [
+        "libs/shared/silly-log-decorator/src/index.ts"
+      ],
+      "@silly-modules/silly-retry-decorator": [
+        "libs/shared/silly-retry-decorator/src/index.ts"
+      ],
       "@silly-monorepo/shared/data-access-silly-family": [
         "libs/shared/data-access-silly-family/src/index.ts"
       ],

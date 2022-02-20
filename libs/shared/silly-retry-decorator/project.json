@@ -1,0 +1,34 @@
+{
+  "root": "libs/shared/silly-retry-decorator",
+  "sourceRoot": "libs/shared/silly-retry-decorator/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/silly-retry-decorator/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/silly-retry-decorator"],
+      "options": {
+        "jestConfig": "libs/shared/silly-retry-decorator/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/silly-retry-decorator",
+        "tsConfig": "libs/shared/silly-retry-decorator/tsconfig.lib.json",
+        "packageJson": "libs/shared/silly-retry-decorator/package.json",
+        "main": "libs/shared/silly-retry-decorator/src/index.ts",
+        "assets": ["libs/shared/silly-retry-decorator/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

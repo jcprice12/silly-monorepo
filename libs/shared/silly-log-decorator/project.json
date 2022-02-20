@@ -1,0 +1,34 @@
+{
+  "root": "libs/shared/silly-log-decorator",
+  "sourceRoot": "libs/shared/silly-log-decorator/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/silly-log-decorator/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/silly-log-decorator"],
+      "options": {
+        "jestConfig": "libs/shared/silly-log-decorator/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/silly-log-decorator",
+        "tsConfig": "libs/shared/silly-log-decorator/tsconfig.lib.json",
+        "packageJson": "libs/shared/silly-log-decorator/package.json",
+        "main": "libs/shared/silly-log-decorator/src/index.ts",
+        "assets": ["libs/shared/silly-log-decorator/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

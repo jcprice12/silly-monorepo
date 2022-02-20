@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "shared-data-access-silly-family": "libs/shared/data-access-silly-family",
+    "shared-silly-log-decorator": "libs/shared/silly-log-decorator",
+    "shared-silly-retry-decorator": "libs/shared/silly-retry-decorator",
     "shared-util-silly-family": "libs/shared/util-silly-family",
     "silly-angular-mfe": "apps/silly-angular-mfe",
     "silly-angular-mfe-e2e": "apps/silly-angular-mfe-e2e",
